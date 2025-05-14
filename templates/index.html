@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Risk Assessment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .result-container {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="text-center mb-4">Diabetes Risk Assessment</h2>
+            <form id="predictionForm">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">High Blood Pressure (0=No, 1=Yes)</label>
+                        <select class="form-select" name="HighBP" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">High Cholesterol (0=No, 1=Yes)</label>
+                        <select class="form-select" name="HighChol" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">BMI</label>
+                        <input type="number" class="form-control" name="BMI" step="0.1" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Smoker (0=No, 1=Yes)</label>
+                        <select class="form-select" name="Smoker" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Stroke (0=No, 1=Yes)</label>
+                        <select class="form-select" name="Stroke" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Heart Disease (0=No, 1=Yes)</label>
+                        <select class="form-select" name="HeartDiseaseorAttack" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Physical Activity (0=No, 1=Yes)</label>
+                        <select class="form-select" name="PhysActivity" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Fruits (0=No, 1=Yes)</label>
+                        <select class="form-select" name="Fruits" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Vegetables (0=No, 1=Yes)</label>
+                        <select class="form-select" name="Veggies" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Heavy Alcohol Consumption (0=No, 1=Yes)</label>
+                        <select class="form-select" name="HvyAlcoholConsump" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Any Healthcare (0=No, 1=Yes)</label>
+                        <select class="form-select" name="AnyHealthcare" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Cholesterol Check (0=No, 1=Yes)</label>
+                        <select class="form-select" name="CholCheck" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">No Doctor Because of Cost (0=No, 1=Yes)</label>
+                        <select class="form-select" name="NoDocbcCost" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">General Health (1-5)</label>
+                        <select class="form-select" name="GenHlth" required>
+                            <option value="1">Excellent</option>
+                            <option value="2">Very Good</option>
+                            <option value="3">Good</option>
+                            <option value="4">Fair</option>
+                            <option value="5">Poor</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Mental Health Days (0-30)</label>
+                        <input type="number" class="form-control" name="MentHlth" min="0" max="30" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Physical Health Days (0-30)</label>
+                        <input type="number" class="form-control" name="PhysHlth" min="0" max="30" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Difficulty Walking (0=No, 1=Yes)</label>
+                        <select class="form-select" name="DiffWalk" required>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Sex (0=Female, 1=Male)</label>
+                        <select class="form-select" name="Sex" required>
+                            <option value="0">Female</option>
+                            <option value="1">Male</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Age (1-13)</label>
+                        <select class="form-select" name="Age" required>
+                            <option value="1">18-24</option>
+                            <option value="2">25-29</option>
+                            <option value="3">30-34</option>
+                            <option value="4">35-39</option>
+                            <option value="5">40-44</option>
+                            <option value="6">45-49</option>
+                            <option value="7">50-54</option>
+                            <option value="8">55-59</option>
+                            <option value="9">60-64</option>
+                            <option value="10">65-69</option>
+                            <option value="11">70-74</option>
+                            <option value="12">75-79</option>
+                            <option value="13">80+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Education (1-6)</label>
+                        <select class="form-select" name="Education" required>
+                            <option value="1">Never attended school</option>
+                            <option value="2">Elementary</option>
+                            <option value="3">Some High School</option>
+                            <option value="4">High School Graduate</option>
+                            <option value="5">Some College</option>
+                            <option value="6">College Graduate</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Income (1-8)</label>
+                        <select class="form-select" name="Income" required>
+                            <option value="1">Less than $10,000</option>
+                            <option value="2">$10,000-$15,000</option>
+                            <option value="3">$15,000-$20,000</option>
+                            <option value="4">$20,000-$25,000</option>
+                            <option value="5">$25,000-$35,000</option>
+                            <option value="6">$35,000-$50,000</option>
+                            <option value="7">$50,000-$75,000</option>
+                            <option value="8">$75,000 or more</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">Predict Risk</button>
+                </div>
+            </form>
+
+            <div id="result" class="result-container text-center">
+                <h3>Prediction Result:</h3>
+                <p id="predictionText" class="h4"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#predictionForm').on('submit', function(e) {
+                e.preventDefault();
+                console.log('Form submitted');
+                
+                // Log form data
+                const formData = $(this).serialize();
+                console.log('Form data:', formData);
+                
+                $.ajax({
+                    url: '/predict',
+                    method: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        console.log('Server response:', response);
+                        if (response.status === 'success') {
+                            $('#result').show();
+                            $('#predictionText').text(response.prediction);
+                        } else {
+                            console.error('Prediction error:', response.message);
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX error:', {
+                            status: status,
+                            error: error,
+                            response: xhr.responseText
+                        });
+                        
+                        let errorMessage = 'An error occurred while processing your request.';
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.message) {
+                                errorMessage = response.message;
+                            }
+                        } catch (e) {
+                            console.error('Error parsing response:', e);
+                        }
+                        alert(errorMessage);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
